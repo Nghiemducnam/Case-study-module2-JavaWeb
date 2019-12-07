@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th ="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>phone</title>
+</head>
+<body>
+<!--<form>-->
+    <a href="/admin">Back to home page</a><br>
+    <a href="/admin/create-mobileType">Create new Mobile Type</a><br>
+
+<!--    Search by name:-->
+<!--    <input name="s" type="text"/>-->
+<!--    <input type="submit" value="Search"/>-->
+<!--</form>-->
+<br/>
+
+<!--<form th:action="@{/list-mobileType}" onchange="this.submit()">-->
+<!--    <a>Search by Producer</a>-->
+<!--    <select name="search">-->
+<!--        <option value=-1></option>-->
+<!--        <option th:each="producer :${producer}"-->
+<!--                th:text="${producer.producerName}"-->
+<!--                th:value="${producer.producerId}"-->
+<!--                th:selected="(${producer.getProducerId()}==${s})"></option>-->
+<!--    </select>-->
+
+<!--</form>-->
+
+<table border="1">
+    <tr>
+        <td>Name</td>
+        <td>Description</td>
+        <td>Status</td>
+        <td>Producer</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    <th:block th:each="mobileType:${mobileTypes}">
+        <tr>
+            <td th:text="${mobileType.mobileTypeName}"></td>
+            <td th:text="${mobileType.mobileTypeDescription}"></td>
+            <td th:text="${mobileType.mobileTypeStatus}"></td>
+            <td th:text="${mobileType.producer.producerName}"></td>
+            <td><a th:href="@{/admin/edit-mobileType/__${mobileType.mobileTypeId}__}">Edit</a></td>
+            <td><a th:href="@{/admin/delete-mobileType/__${mobileType.mobileTypeId}__}">Delete</a></td>
+        </tr>
+    </th:block>
+
+</table>
+</body>
+</html>

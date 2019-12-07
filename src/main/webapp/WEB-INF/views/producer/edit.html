@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Producer</title>
+</head>
+<body>
+<h2><a th:href="@{/admin/list-producer}">Return List Producer</a></h2>
+<b><p th:text="${message}"></p></b>
+<form th:action="@{/admin/update-producer}" method="post" th:object="${producers}">
+    <table>
+        <td><input type="hidden" th:field="*{producerId}"></td>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{producerName}"></td>
+            <td th:if="${#fields.hasErrors('producerName')}" th:errors="*{producerName}">NameError</td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Update</button></td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>

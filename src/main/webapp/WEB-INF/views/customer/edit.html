@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Customer</title>
+</head>
+<body>
+<h2><a th:href="@{/admin/list-customer}">Back to Customer List</a></h2>
+<form th:action="@{/admin/edit-customer}" th:object="${customers}" method="post">
+    <input type="hidden" th:field="*{customerId}">
+    <table border="1">
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{customerName}"></td>
+            <td th:if="${#fields.hasErrors('customerName')}" th:errors="*{customerName}">NameError</td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td><input type="text" th:field="*{customerPhone}"></td>
+            <td th:if="${#fields.hasErrors('customerPhone')}" th:errors="*{customerPhone}">NameError</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="*{customerEmail}"></td>
+            <td th:if="${#fields.hasErrors('customerEmail')}" th:errors="*{customerEmail}">NameError</td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Update</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Employee</title>
+</head>
+<body>
+<h2><a th:href="@{/admin/list-employee}">Back to Employee List </a></h2>
+<form th:action="@{/admin/update-employee}" method="post" th:object="${employees}">
+    <table>
+        <td><input type="hidden" th:field="*{employeeId}"></td>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{employeeName}"></td>
+            <td th:if="${#fields.hasErrors('employeeName')}" th:errors="*{employeeName}">NameError</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td><input type="text" th:field="*{employeeEmail}"></td>
+            <td th:if="${#fields.hasErrors('employeeEmail')}" th:errors="*{employeeEmail}">NameError</td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td><input type="text" th:field="*{employeePhone}"></td>
+            <td th:if="${#fields.hasErrors('employeePhone')}" th:errors="*{employeePhone}">NameError</td>
+        </tr>
+        <tr>
+            <td>User:</td>
+            <td><input type="text" th:field="*{employeeUser}"></td>
+            <td th:if="${#fields.hasErrors('employeeUser')}" th:errors="*{employeeUser}">NameError</td>
+        </tr>
+        <tr>
+            <td>Password:</td>
+            <td><input type="password" th:field="*{employeePassword}"></td>
+            <td th:if="${#fields.hasErrors('employeePassword')}" th:errors="*{employeePassword}">NameError</td>
+        </tr>
+        <tr>
+            <td><button type="submit">Update</button></td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Bill Detail</title>
+</head>
+<body>
+<h1>Create Bill Detail</h1>
+<p>
+    <a href="/admin/list-billDetail">Back to Bill Detail</a>
+</p>
+
+<form th:action="@{/admin/save-billDetail}" th:object="${billDetails}" method="post">
+    <input type="hidden" th:field="*{billDetailId}">
+    <table>
+
+        <tr>
+            <td>Quantity:</td>
+            <td>
+                <input type="number" th:field="*{mobileNumber}"/>
+            </td>
+            <td th:if="${#fields.hasErrors('mobileNumber')}" th:errors="*{mobileNumber}">NameError</td>
+        </tr>
+
+        <tr>
+            <td>Price Each:</td>
+            <td>
+                <input type="text" th:field="*{priceEach}"/>
+            </td>
+            <td th:if="${#fields.hasErrors('priceEach')}" th:errors="*{priceEach}">NameError</td>
+        </tr>
+
+        <tr>
+            <td>Date:</td>
+            <td>
+                <input type="date" th:field="*{billDetailDate}"/>
+            </td>
+            <td th:if="${#fields.hasErrors('billDetailDate')}" th:errors="*{billDetailDate}">NameError</td>
+        </tr>
+
+
+        <tr>
+            <td>Customer:</td>
+            <td>
+                <select th:field="*{customer}">
+                    <option th:each="p : ${customer}" th:value="${p.customerId}" th:text="${p.customerName}"></option>
+                </select>
+            </td>
+            <td th:if="${#fields.hasErrors('customer')}" th:errors="*{customer}">NameError</td>
+        </tr>
+
+        <tr>
+            <td>Bill:</td>
+            <td>
+                <select th:field="*{bill}">
+                    <option th:each="p : ${bill}" th:value="${p.billId}" th:text="${p.billNumber}"></option>
+                </select>
+            </td>
+            <td th:if="${#fields.hasErrors('bill')}" th:errors="*{bill}">NameError</td>
+        </tr>
+
+        <tr>
+            <td>Payment:</td>
+            <td>
+                <select th:field="*{payment}">
+                    <option th:each="p : ${payment}" th:value="${p.paymentId}" th:text="${p.paymentCode}"></option>
+                </select>
+            </td>
+            <td th:if="${#fields.hasErrors('payment')}" th:errors="*{payment}">NameError</td>
+        </tr>
+
+
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create Bill"></td>
+        </tr>
+
+    </table>
+</form>
+</body>
+</html>

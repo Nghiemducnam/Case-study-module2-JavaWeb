@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Bill Detail</title>
+</head>
+<body>
+<h3><a href="/admin/list-billDetail">Back to Bill Detail</a></h3>
+<h2>Are your sure?</h2>
+<form th:object="${billDetails}" th:action="@{/admin/remove-billDetail}" method="post">
+    <table>
+        <tr>
+            <td><input type="hidden" th:field="*{billDetailId}"></td>
+        </tr>
+        <tr>
+            <td>Number</td>
+            <td>><a th:text="${billDetails.getBillDetailNumber()}"></a></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Yes</button></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

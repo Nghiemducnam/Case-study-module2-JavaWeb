@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Producer</title>
+</head>
+<body>
+<h3><a href="/admin/list-producer">Return List Producer</a></h3>
+<h2>Are your sure to remove this Producer?</h2>
+<form th:object="${producers}" th:action="@{/admin/remove-producer}" method="post">
+    <table>
+        <tr>
+            <td><input type="hidden" th:field="*{producerId}"></td>
+        </tr>
+        <tr>
+            <td><b>Producer name:</b></td>
+            <td><a th:text="${producers.getProducerName()}"></a></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Yes</button></td>
+            <td><input type="button" value="NO" onclick="window.location.href='/admin/list-producer' " /></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

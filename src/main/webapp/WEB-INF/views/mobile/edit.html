@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Mobile</title>
+</head>
+<body>
+<h1>Edit Mobile</h1>
+<p>
+    <a href="/admin/list-mobile">Back to Mobile List</a>
+</p>
+<b><p th:text="${message}"></p></b>
+<form th:action="@{/admin/update-mobile}" th:object="${mobiles}" method="post">
+    <td><input type="hidden" th:field="*{mobileId}"></td>
+    <table>
+        <tr>
+            <td>Name:</td>
+            <td><input type="text" th:field="*{mobileName}"/></td>
+            <td th:if="${#fields.hasErrors('mobileName')}" th:errors="*{mobileName}">NameError</td>
+        </tr>
+        <tr>
+            <td>Price:</td>
+            <td><input type="text" th:field="*{mobilePrice}"/></td>
+            <td th:if="${#fields.hasErrors('mobilePrice')}" th:errors="*{mobilePrice}">NameError</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" th:field="*{mobileDescription}"/></td>
+            <td th:if="${#fields.hasErrors('mobileDescription')}" th:errors="*{mobileDescription}">NameError</td>
+        </tr>
+        <tr>
+            <td>Image:</td>
+            <td><input type="text" th:field="*{mobileImage}"/></td>
+            <td th:if="${#fields.hasErrors('mobileImage')}" th:errors="*{mobileImage}">NameError</td>
+        </tr>
+
+
+        <tr>
+            <td>Producer:</td>
+            <td>
+                <select th:field="*{producer}">
+                    <option th:each="p : ${producer}" th:value="${p.producerId}" th:text="${p.producerName}"></option>
+                </select>
+            </td>
+            <td th:if="${#fields.hasErrors('producer')}" th:errors="*{producer}">NameError</td>
+        </tr>
+        <tr>
+            <td>Mobile Type:</td>
+            <td>
+                <select th:field="*{mobileType}">
+                    <option th:each="p : ${mobileType}" th:value="${p.mobileTypeId}" th:text="${p.mobileTypeName}"></option>
+                </select>
+            </td>
+            <td th:if="${#fields.hasErrors('mobileType')}" th:errors="*{mobileType}">NameError</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Update Mobile"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

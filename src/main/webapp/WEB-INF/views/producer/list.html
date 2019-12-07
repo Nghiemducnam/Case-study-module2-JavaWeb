@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Producer List</title>
+</head>
+<body>
+<p>
+    <a href="/admin">Back to home page</a>
+</p>
+<h1>Producer list</h1>
+<p>
+    <a href="/admin/create-producer">Create Producer</a>
+</p>
+
+
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="producer : ${producers}">
+        <tr>
+            <td th:text="${producer.producerName}"></td>
+            <td><a th:href="@{/admin/edit-producer/__${producer.producerId}__}">Edit</a></td>
+            <td><a th:href="@{/admin/delete-producer/__${producer.producerId}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

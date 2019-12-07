@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile Detail</title>
+</head>
+<body>
+<h3><a href="/admin/list-mobile">Back to List Mobile </a></h3>
+<h2>Mobile Detail</h2>
+<form th:object="${mobiles}">
+    <table>
+        <tr>
+            <td><input type="hidden" th:field="*{mobileId}"></td>
+        </tr>
+        <tr>
+            <td><b>Mobile name:</b></td>
+            <td><a th:text="${mobiles.getMobileName()}"></a></td>
+        </tr>
+        <tr>
+            <td><b>Price:</b></td>
+            <td><a th:text="${mobiles.getMobilePrice()}"></a></td>
+        </tr>
+        <tr>
+            <td><b>Producer:</b></td>
+            <td><a th:text="${mobiles.getProducer().producerName}"></a></td>
+        </tr>
+        <tr>
+            <td><b>Mobile type:</b></td>
+            <td><a th:text="${mobiles.getMobileType().mobileTypeName}"></a></td>
+        </tr>
+        <tr>
+            <td><b>Image:</b></td>
+            <td ><img th:src="${mobiles.getMobileImage()}"></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

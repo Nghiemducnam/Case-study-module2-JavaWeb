@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Customer</title>
+</head>
+<body>
+<h3><a href="/admin/list-customer">Back to List Customer</a></h3>
+<h2>Are your sure to remove this customer?</h2>
+<form th:object="${customers}" th:action="@{/admin/remove-customer}" method="post">
+    <table>
+        <tr>
+            <td><input type="hidden" th:field="*{customerId}"></td>
+        </tr>
+        <tr>
+            <td><b>Name</b></td>
+            <td><a th:text="${customers.getCustomerName()}"></a></td>
+        </tr>
+        <tr>
+            <td><b>Phone</b></td>
+            <td><a th:text="${customers.getCustomerPhone()}"></a></td>
+        </tr>
+        <tr>
+            <td><b>Email:</b></td>
+            <td><a th:text="${customers.getCustomerEmail()}"></a></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Yes</button></td>
+            <td><input type="button" value="No" onclick="window.location.href='/admin/list-customer' " /></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

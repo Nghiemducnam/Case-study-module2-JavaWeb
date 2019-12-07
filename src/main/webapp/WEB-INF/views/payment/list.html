@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment List</title>
+</head>
+<body>
+<p>
+    <a href="/admin">Back to home page</a>
+</p>
+<h1>Payment list</h1>
+<p>
+    <a href="/admin/create-payment">Create Payment</a>
+</p>
+
+
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <th>Code</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="payment : ${payments}">
+        <tr>
+            <td th:text="${payment.paymentCode}"></td>
+            <td th:text="${payment.paymentDescription}"></td>
+            <td th:text="${payment.paymentStatus}"></td>
+            <td><a th:href="@{/admin/edit-payment/__${payment.paymentId}__}">Edit</a></td>
+            <td><a th:href="@{/admin/delete-payment/__${payment.paymentId}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

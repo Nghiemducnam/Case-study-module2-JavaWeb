@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Bill</title>
+</head>
+<body>
+<h2><a th:href="@{/admin/list-bill}">Back to List Bill</a></h2>
+<form th:action="@{/admin/update-bill}" method="post" th:object="${bills}">
+    <table>
+        <td><input type="hidden" th:field="*{billId}"></td>
+        <tr>
+            <td>Number:</td>
+            <td><input type="text" th:field="*{billNumber}"></td>
+            <td th:if="${#fields.hasErrors('billNumber')}" th:errors="*{billNumber}">NameError</td>
+        </tr>
+        <tr>
+            <td>Date:</td>
+            <td><input type="date" th:field="*{billDate}"></td>
+            <td th:if="${#fields.hasErrors('billDate')}" th:errors="*{billDate}">NameError</td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Update</button></td>
+        </tr>
+
+    </table>
+</form>
+
+</body>
+</html>

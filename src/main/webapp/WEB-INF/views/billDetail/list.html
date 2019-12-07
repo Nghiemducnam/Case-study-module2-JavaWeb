@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill Detail</title>
+</head>
+<body>
+<a href="/admin/list-billDetail">Back to Bill Detail</a>
+<br/>
+<a href="/admin"> Back to Home page</a>
+
+<h2><a href="/admin/create-billDetail">Create Bill Detail</a></h2>
+<h1>Bill</h1>
+<form>
+    Search by Employee Name:
+    <input name="search" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<table border="1">
+    <tr>
+        <th>Customer</th>
+        <th>Quantity</th>
+        <th>Price Each</th>
+        <th>Total Price</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Bill Number</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="billDetail : ${billDetails}">
+        <tr>
+            <td th:text="${billDetail.customer.getCustomerName()}"></td>
+            <td th:text="${billDetail.mobileNumber}"></td>
+            <td th:text="${#numbers.formatDecimal(billDetail.getPriceEach(),0,'POINT',0,'COMMA')}"></td>
+            <td th:text="${#numbers.formatDecimal(billDetail.getTotalPrice(),0,'POINT',0,'COMMA')}"></td>
+            <td th:text="${#dates.format(billDetail.billDetailDate, 'dd-MM-yyyy')}"></td>
+            <!--            <td th:text="${billDetail.billDetailDate}"></td>-->
+            <td th:text="${billDetail.billDetailStatus}"></td>
+            <td th:text="${billDetail.bill.getBillNumber()}"></td>
+            <td><a th:href="@{/admin/edit-billDetail/__${billDetail.getBillDetailId()}__ }">Edit</a></td>
+            <td><a th:href="@{/admin/delete-billDetail/__${billDetail.getBillDetailId()}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

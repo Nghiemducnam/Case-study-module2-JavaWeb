@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Mobile Type</title>
+</head>
+<body>
+<h3><a href="/admin/list-mobileType">Return List Mobile Type</a></h3>
+<h2>Are your sure to remove this mobile type?</h2>
+<form th:object="${mobileTypes}" th:action="@{/admin/remove-mobileType}" method="post">
+    <table>
+        <tr>
+            <td><input type="hidden" th:field="*{mobileTypeId}"></td>
+        </tr>
+        <tr>
+            <td><b>Mobile Type name:</b></td>
+            <td><a th:text="${mobileTypes.getMobileTypeName()}"></a></td>
+        </tr>
+
+        <tr>
+            <td><button type="submit">Yes</button></td>
+            <td><input type="button" value="No" onclick="window.location.href='/admin/list-mobileType' " /></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>

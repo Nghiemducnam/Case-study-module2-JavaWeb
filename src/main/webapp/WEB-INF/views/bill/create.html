@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Bill</title>
+</head>
+<body>
+<h1>Create Bill</h1>
+<p>
+    <a href="/admin/list-bill">Back to Bill List</a>
+</p>
+
+<form th:action="@{/admin/save-bill}" th:object="${bills}" method="post">
+    <table>
+        <tr>
+            <td>Number:</td>
+            <td><input type="text" th:field="*{billNumber}"/></td>
+            <td th:if="${#fields.hasErrors('billNumber')}" th:errors="*{billNumber}">NameError</td>
+        </tr>
+        <tr>
+            <td>Date:</td>
+            <td><input type="date" th:field="*{billDate}"/></td>
+            <td th:if="${#fields.hasErrors('billDate')}" th:errors="*{billDate}">NameError</td>
+        </tr>
+
+        <tr>
+            <td>Employee:</td>
+            <td>
+                <select th:field="*{employee}">
+                    <option th:each="p : ${employee}" th:value="${p.employeeId}" th:text="${p.employeeName}"></option>
+                </select>
+            </td>
+            <td th:if="${#fields.hasErrors('employee')}" th:errors="*{employee}">NameError</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Create Bill"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

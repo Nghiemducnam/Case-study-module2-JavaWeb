@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mobile</title>
+</head>
+<body>
+<a href="/admin"> Back to Home</a>
+<br>
+<a href="/admin/list-mobile">Back to Mobile</a>
+<br/>
+
+<h2><a href="/admin/create-mobile">Create Mobile</a></h2>
+<h1>Bill</h1>
+<form>
+    <b> Search by phone name:</b>
+    <input name="s" type="text"/>
+    <input type="submit" value="Search"/>
+</form>
+<br/>
+
+<form th:action="@{/user/searchByMobileType}" onchange="this.submit()">
+    <a>Search by Mobile Type</a>
+    <select name="search">
+        <option value=-1></option>
+        <option th:each="type :${mobileType}"
+                th:text="${type.mobileTypeName}"
+                th:value="${type.mobileTypeId}"
+                th:selected="(${type.getMobileTypeId()}==${search})"></option>
+    </select>
+</form>
+
+<form th:action="@{/user/searchByProducer}" onchange="this.submit()">
+    <a>Search by Producer</a>
+    <select name="search1">
+        <option value=-1></option>
+        <option th:each="type :${producer}"
+                th:text="${type.producerName}"
+                th:value="${type.producerId}"
+                th:selected="(${type.getProducerId()}==${search})"></option>
+    </select>
+</form>
+
+<table border="1">
+    <tr>
+        <th>Name:</th>
+        <th>Price</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Image</th>
+        <th>Producer</th>
+        <th>Mobile Type</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Detail</th>
+    </tr>
+    <th:block th:each="mobile : ${mobiles}">
+        <tr>
+            <td th:text="${mobile.mobileName}"></td>
+            <td th:text="${mobile.mobilePrice}"></td>
+            <td th:text="${mobile.mobileDescription}"></td>
+            <td th:text="${mobile.mobileType.mobileTypeStatus}"></td>
+            <td><img th:src="${mobile.getMobileImage()}" style="width: 100px; height: 100px "></td>
+            <td th:text="${mobile.producer.producerName}"></td>
+            <td th:text="${mobile.mobileType.getMobileTypeName()}"></td>
+            <td><a th:href="@{/admin/edit-mobile/__${mobile.getMobileId()}__ }">Edit</a></td>
+            <td><a th:href="@{/admin/delete-mobile/__${mobile.getMobileId()}__ }">Delete</a></td>
+            <td><a th:href="@{/admin/detail-mobile/__${mobile.getMobileId()}__ }">Detail</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/admin/list-mobile'(page=${mobiles.number - 1})}" th:if="${mobiles.hasPrevious()}">Previous</a>
+    <span th:text="${mobiles.number + 1}"></span>/<span th:text="${mobiles.totalPages}"></span>
+    <a th:href="@{'/admin/list-mobile'(page=${mobiles.number + 1})}" th:if="${mobiles.hasNext()}">Next</a>
+</div></div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Bill</title>
+</head>
+<body>
+<a href="/admin"> Back to Home page</a>
+<br/>
+<a href="/admin/list-employee"> Back to Employee List</a>
+
+<h2><a href="/admin/create-bill">Create Bill</a></h2>
+<h1>Bill</h1>
+<form>
+    Search by Employee Name:
+    <input name="search" type="text"/>
+    <input type="submit" value="Search"/>
+</form><br/>
+<table border="1">
+    <tr>
+        <th>Bil number:</th>
+        <th>Date</th>
+        <th>Employee</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="bill : ${bills}">
+        <tr>
+            <td th:text="${bill.billNumber}"></td>
+            <td th:text="${bill.billDate}"></td>
+            <td th:text="${bill.getEmployee().employeeName}"></td>
+            <td><a th:href="@{/admin/edit-bill/__${bill.billId}__ }">Edit</a></td>
+            <td><a th:href="@{/admin/delete-bill/__${bill.billId}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>
+    <a th:href="@{'/admin/list-bill'(page=${bills.number - 1})}" th:if="${bills.hasPrevious()}">Previous</a>
+    <span th:text="${bills.number + 1}"></span>/<span th:text="${bills.totalPages}"></span>
+    <a th:href="@{'/admin/list-bill'(page=${bills.number + 1})}" th:if="${bills.hasNext()}">Next</a>
+</div>
+</body>
+</html>

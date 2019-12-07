@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Payment</title>
+</head>
+<body>
+<h2><a th:href="@{/admin/list-payment}">Back to Payment List</a></h2>
+<form th:action="@{/admin/save-payment}" th:object="${payments}" method="post">
+    <table border="1">
+        <tr>
+            <td>Code:</td>
+            <td><input type="text" th:field="*{paymentCode}"></td>
+            <td th:if="${#fields.hasErrors('paymentCode')}" th:errors="*{paymentCode}">NameError</td>
+        </tr>
+        <tr>
+            <td>Description:</td>
+            <td><input type="text" th:field="*{paymentDescription}"></td>
+            <td th:if="${#fields.hasErrors('paymentDescription')}" th:errors="*{paymentDescription}">NameError</td>
+        </tr>
+        <tr>
+            <td>Status:</td>
+            <td>
+                <input type="radio" th:field="*{paymentStatus}" th:value="true" />
+                <label th:text="true" />
+                <input type="radio" th:field="*{paymentStatus}" th:value="false" />
+                <label th:text="false" />
+            </td>
+            <td th:if="${#fields.hasErrors('paymentStatus')}" th:errors="*{paymentStatus}">NameError</td>
+
+        </tr>
+        <tr>
+            <td><button type="submit">Create</button></td>
+
+        </tr>
+    </table>
+</form>
+</body>
+</html>

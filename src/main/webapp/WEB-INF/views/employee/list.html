@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee list</title>
+</head>
+<body>
+<p>
+    <a href="/admin">Back to home page</a>
+</p>
+<h1>Employee list</h1>
+<p>
+    <a href="/admin/create-employee">Create new Employee</a>
+</p>
+
+<!--<form th:action="@{/searchByCategory}" onchange="this.submit()">-->
+<!--    <a>Search by category</a>-->
+<!--    <select name="search">-->
+<!--        <option value=-1></option>-->
+<!--        <option th:each="category :${categories}"-->
+<!--                th:text="${category.category_name}"-->
+<!--                th:value="${category.category_Id}"-->
+<!--                th:selected="(${category.getCategory_Id()}==${search})"></option>-->
+<!--    </select>-->
+
+<!--</form>-->
+
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+        <th>User</th>
+        <th>Password</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="employee : ${employees}">
+        <tr>
+            <td th:text="${employee.employeeName}"></td>
+            <td th:text="${employee.employeePhone}"></td>
+            <td th:text="${employee.employeeEmail}"></td>
+            <td th:text="${employee.employeeUser}"></td>
+            <td th:text="${employee.employeePassword}"></td>
+            <td><a th:href="@{/admin/edit-employee/__${employee.employeeId}__}">Edit</a></td>
+            <td><a th:href="@{/admin/delete-employee/__${employee.employeeId}__}">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
